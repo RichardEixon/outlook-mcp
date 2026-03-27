@@ -44,7 +44,7 @@ mcpServer.setRequestHandler(ListToolsRequestSchema, async () => ({
 }));
 
 /** Routes incoming tool-call requests to the appropriate handler. */
-mcpServer.setRequestHandler(CallToolRequestSchema, async (request) => {
+mcpServer.setRequestHandler(CallToolRequestSchema, async (request): Promise<any> => {
   const { name, arguments: args = {} } = request.params;
 
   try {

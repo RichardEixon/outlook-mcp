@@ -84,7 +84,7 @@ export async function exchangeCodeForTokens(code: string): Promise<{
   return {
     accessToken: data.access_token,
     refreshToken: data.refresh_token,
-    expiresIn: data.expires_in,
+    expiresIn: Number(data.expires_in),
   };
 }
 
@@ -120,7 +120,7 @@ export async function getAccessToken(): Promise<string> {
   // Update cache
   tokenCache = {
     accessToken: data.access_token,
-    expiresAt: Date.now() + data.expires_in * 1000,
+    expiresAt: Date.now() + Number(data.expires_in) * 1000,
   };
 
   // Microsoft sometimes rotates the refresh token — keep it current
